@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="global.css">
         <title>NewsPortal</title>
     </head>
     <body>
@@ -15,17 +16,17 @@
             <div class="news"></div>
         </main>
         <footer>
+            <div class="me">
+                <p>February, 2023</p>
+                <a href="https://github.com/KateDronova"><b>KateDronova</b> on GitHub</a>
+            </div>
+            <div class="rsSchool">
+                <img src="./rs_school_js.svg" alt="logo">
+                <a href="https://rs.school/js-en/">Javascript /Front-end Mentoring Program</a>
+            </div>
             <p class="copyright">
                 Copyright <a href="https://newsapi.org">NewsAPI</a>
             </p>
-            <div>
-                <a href="https://github.com/KateDronova">KateDronova on GitHub</a>
-                <p>Feb,2023</p>
-            </div>
-            <div>
-                <img src="./rs_school_js.svg" alt="logo" style="width:100px">
-                <a href="https://rs.school/js-en/">Javascript/Front-end Mentoring Program</a>
-            </div>
         </footer>
 
         <template id="sourceItemTemp">
@@ -54,6 +55,6 @@
             </div>
         </template>
 
-        <script src="./index.js"></script>
+        <script src="../dist/index.js"></script>
     </body>
 </html>

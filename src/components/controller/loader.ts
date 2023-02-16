@@ -1,3 +1,5 @@
+import { Data } from "../view/appView";
+
 class Loader {
     constructor(public baseLink: string, public options: object) {}
 
@@ -32,8 +34,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: (arg: Array<string>) => Array<string>, options = {}) {
-    // load(method: string, endpoint: string, callback: (arg: Array<string>) => Array<string>, options = {}) {
+    load(method: string, endpoint: string | number, callback: (data: Data) => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
