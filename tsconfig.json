@@ -13,8 +13,5 @@
       "preserveConstEnums": true
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "dist"],
-    "extends": "@tsconfig/recommended/tsconfig.json",
-    "$schema": "https://json.schemastore.org/tsconfig",
-    "display": "Recommended"
+    "exclude": ["node_modules", "dist"]
   }

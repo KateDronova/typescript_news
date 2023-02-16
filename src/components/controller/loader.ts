@@ -22,19 +22,18 @@ class Loader {
         return res;
     }
 
-    makeUrl(options = {}, endpoint: string | number) {
+    makeUrl(options = {}, endpoint: string) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
-        Object.keys(urlOptions).forEach((key: string) => {
-            url += `${key}=${Object.keys(urlOptions)}&`;
-            // url += `${key}=${urlOptions[keys]}&`;
+        Object.entries(urlOptions).forEach((value: [string, unknown], index?: number, array?: [string, unknown][]) => {
+            url += `${value[0]}=${value[1]}&`;
         });
 
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string | number, callback: (data: Data) => void, options = {}) {
+    load(method: string, endpoint: string, callback: (data: Data) => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
