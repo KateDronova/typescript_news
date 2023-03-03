@@ -1,28 +1,28 @@
 import './sources.css';
 
-export type Source = {
+export type Source<T> = {
     id: number,
-    name: string,
-    description: string,
+    name: T,
+    description: T,
     url: URL,
-    category: string,
-    language: string,
-    country: string
+    category: T,
+    language: T,
+    country: T
 }
 
 class Sources {
-    draw(data = []) {
-        const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
-        const sourcesDiv = document.querySelector('.sources') as HTMLElement;
+    draw(data: Source<string>[]):void {
+        const fragment = <DocumentFragment>document.createDocumentFragment();
+        const sourceItemTemp = <HTMLTemplateElement>document.querySelector('#sourceItemTemp');
+        const sourcesDiv = <HTMLDivElement>document.querySelector('.sources');
 
-        data.forEach((item: Source) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
+        data.forEach((item: Source<string>):void => {
+            const sourceClone = <HTMLDivElement>sourceItemTemp.content.cloneNode(true);
             
-            const itemName = sourceClone.querySelector('.source__item-name') as HTMLElement;
+            const itemName = <HTMLSpanElement>sourceClone.querySelector('.source__item-name');
             itemName.textContent = item.name;
 
-            const item1 = sourceClone.querySelector('.source__item') as HTMLElement;
+            const item1 = <HTMLDivElement>sourceClone.querySelector('.source__item');
             item1.setAttribute('data-source-id', `${item.id}`);
 
             fragment.append(sourceClone);

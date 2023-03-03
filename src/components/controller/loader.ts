@@ -1,7 +1,13 @@
 import { Data } from "../view/appView";
 
 class Loader {
-    constructor(public baseLink: string, public options: object) {}
+    public baseLink: string;
+    public options?: object;
+
+    constructor(baseLink: string, options: object) {
+        this.baseLink = baseLink;
+        this.options = options;
+    }
 
     getResp(
         { endpoint = '', options = {} },
@@ -33,7 +39,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: (data: Data) => void, options = {}) {
+    load(method: string, endpoint: string, callback: (data?: Data) => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

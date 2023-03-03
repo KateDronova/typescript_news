@@ -8,10 +8,12 @@ type ColorButtons = keyof typeof Colors;
 
 class ChangeColor {
     changeBackgroundColor(key: ColorButtons) {
-        const body = document.querySelector('body') as Element;
+        const body = <HTMLBodyElement>document.querySelector('body');
         const color = Colors[key];
         const classToAdd = color;
-        body.classList.remove('light', 'grape', 'blue', 'dark');
+        for (key in Colors) {
+            body.classList.remove(Colors[key]);
+        }
         body.classList.add(classToAdd);
     }
 }

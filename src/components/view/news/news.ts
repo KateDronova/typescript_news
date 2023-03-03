@@ -1,55 +1,58 @@
 import './news.css';
 
-export interface Article {
+export interface Article<T> {
     source: {
         id: number,
-        name:string,
+        name:T,
     };
-    author: string;
-    title: string;
-    description: string;
+    author: T;
+    title: T;
+    description: T;
     url: URL;
     urlToImage: URL;
-    publishedAt: string;
-    content: string;
+    publishedAt: T;
+    content: T;
 }
 
 class News {
-    draw(data = []) {
+    draw(data: Article<string>[]):void {
         const news = data.length >= 10 ? data.filter((_item, idx: number) => idx < 10) : data;
 
-        const fragment = document.createDocumentFragment();
-        const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
-        const newsDiv = document.querySelector('.news') as Element;
+        const fragment = <DocumentFragment>document.createDocumentFragment();
+        const newsItemTemp = <HTMLTemplateElement>document.querySelector('#newsItemTemp');
+        const newsDiv = <HTMLDivElement>document.querySelector('.news');
 
-        news.forEach((item: Article, idx: number) => {
-            const newsClone = newsItemTemp.content.cloneNode(true) as Element;
+        news.forEach((item: Article<string>, idx: number):void => {
+            const newsClone = <HTMLDivElement>newsItemTemp.content.cloneNode(true);
             
-            const nItem = newsClone.querySelector('.news__item') as HTMLElement;
+            const nItem = <HTMLDivElement>newsClone.querySelector('.news__item');
             if (idx % 2) nItem.classList.add('alt');
 
-            const metaPhoto = newsClone.querySelector('.news__meta-photo') as HTMLElement;
+            const metaPhoto = <HTMLDivElement>newsClone.querySelector('.news__meta-photo');
             metaPhoto.style.backgroundImage = `url(${
                 item.urlToImage || 'img/news_placeholder.jpg'
             })`;
 
-            const metaAuthor = newsClone.querySelector('.news__meta-author') as HTMLElement;
+            const metaAuthor = <HTMLLIElement>newsClone.querySelector('.news__meta-author');
             metaAuthor.textContent = item.author || item.source.name;
 
-            const metaDate = newsClone.querySelector('.news__meta-date') as HTMLElement;
+            const metaDate = <HTMLLIElement>newsClone.querySelector('.news__meta-date');
             metaDate.textContent = item.publishedAt
                 .slice(0, 10)
                 .split('-')
                 .reverse()
                 .join('-');
 
-            const descrTitle = newsClone.querySelector('.news__description-title') as HTMLElement;
+            const descrTitle = <HTMLHeadingElement>newsClone.querySelector('.news__description-title');
             descrTitle.textContent = item.title;
-            const descrSource = newsClone.querySelector('.news__description-source') as HTMLElement;
+
+            const descrSource = <HTMLHeadingElement>newsClone.querySelector('.news__description-source');
             descrSource.textContent = item.source.name;
-            const descrContent = newsClone.querySelector('.news__description-content') as HTMLElement;
+
+            const descrContent = <HTMLParagraphElement>newsClone.querySelector('.news__description-content');
             descrContent.textContent = item.description;
-            const readMore = newsClone.querySelector('.news__read-more a') as HTMLElement;
+
+            const readMore = <HTMLParagraphElement>newsClone.querySelector('.news__read-more a');
             readMore.setAttribute('href', `${item.url}`);
 
             fragment.append(newsClone);

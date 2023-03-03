@@ -1,9 +1,9 @@
-import News from './news/news';
-import Sources from './sources/sources';
+import News, { Article } from './news/news';
+import Sources, { Source } from './sources/sources';
 
 export interface Data {
-    articles: [];
-    sources: []
+    articles: Article<string>[];
+    sources: Source<string>[]
 }
 
 export class AppView{

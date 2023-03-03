@@ -9,7 +9,7 @@ class App {
     private changeColor = new ChangeColor();
 
     start() {
-        const sources1 = document.querySelector('.sources') as HTMLElement;
+        const sources1 = <HTMLDivElement>document.querySelector('.sources');
         sources1.addEventListener('click', (e) => this.controller.getNews(e, (data?: Data) => {
             if (data) {
                 this.view.drawNews(data)
@@ -21,19 +21,19 @@ class App {
             }
         });
 
-        const button1 = document.querySelector('button.light') as Element;
+        const button1 = <HTMLButtonElement>document.querySelector('button.light');
         button1.addEventListener('click', () => {
             this.changeColor.changeBackgroundColor('Light');
         });
-        const button2 = document.querySelector('button.grape') as Element;
+        const button2 = <HTMLButtonElement>document.querySelector('button.grape');
         button2.addEventListener('click', () => {
             this.changeColor.changeBackgroundColor('Grape');
         });
-        const button3 = document.querySelector('button.blue') as Element;
+        const button3 = <HTMLButtonElement>document.querySelector('button.blue');
         button3.addEventListener('click', () => {
             this.changeColor.changeBackgroundColor('Blue');
         });
-        const button4 = document.querySelector('button.dark') as Element;
+        const button4 = <HTMLButtonElement>document.querySelector('button.dark');
         button4.addEventListener('click', () => {
             this.changeColor.changeBackgroundColor('Dark');
         });
