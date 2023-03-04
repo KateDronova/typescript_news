@@ -1,0 +1,39 @@
+.changeColor {
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+button {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: #555;
+    box-shadow: 0 0 0.5em #555;
+}
+
+.light {
+    background: #a1937d;
+}
+.grape {
+    background: #452350;
+}
+.blue {
+    background: #171d5b;
+}
+.dark {
+    background: #17181c;
+}
+
+@media (width < 720px) {
+    .changeColor {
+        margin-bottom: 0px;
+    }
+}
